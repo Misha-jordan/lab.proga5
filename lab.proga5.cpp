@@ -1,10 +1,8 @@
-
 #include <iostream>
+#include "Source.h"
+#include <algorithm>
 #include <fstream>
 #include <string>
-#include <algorithm>
-#include "Header.h"
-
 
 void add_func();
 void view_func();
@@ -20,15 +18,13 @@ int main()
     unsigned cnt{};
     std::cout << "Введите слово, кол-во которого вы хотите посчитать: " << "\n";
     std::cin >> word;
-    std::ifstream file("file1.txt");
+    std::ifstream file("D:\\MK.P2\\file1.txt");
 
     if (file.is_open()) {
-        std::getline(file, line);
-        for (unsigned i{}; i <= line.length() - word.length(); ++i) {
-            size_t position = line.find(word, i);
+        while (std::getline(file, line)) {
+            size_t position = line.find(word);
             if (position == std::string::npos) break;
             ++cnt;
-            i = position + word.length() - 1;
         }
     }
 
@@ -190,4 +186,3 @@ void edit_func() {
 
     std::cout << "Запись успешно отредактирована." << "\n";
 }
-    
